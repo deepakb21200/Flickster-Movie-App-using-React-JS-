@@ -1,0 +1,60 @@
+
+
+
+
+.menu-link {
+  color: #cbd5e1;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+  border: 2px solid transparent;
+}
+
+.menu-link i {
+  font-size: 1.3rem;
+  transition: all 0.3s ease;
+}
+
+ 
+ 
+.menu-link:hover {
+  color: #ffffff;
+  transform: scale(1.05);
+  border-color: transparent;
+  background: linear-gradient(#1b1b2f, #2c2c3e) padding-box, 
+              linear-gradient(90deg, #4f46e5, #ff6f61) border-box;
+  animation: glowPulse 1.2s infinite alternate;
+}
+
+
+
+
+
+
+
+
+
+/* Glow Pulse Animation */
+@keyframes glowPulse {
+  from {
+    box-shadow: 0 0 10px rgba(79, 70, 229, 0.5), /* Indigo Glow */
+                0 0 20px rgba(255, 111, 97, 0.4); /* Coral Glow */
+  }
+  to {
+    box-shadow: 0 0 20px rgba(79, 70, 229, 0.9),
+                0 0 40px rgba(255, 111, 97, 0.7);
+  }
+}
+
+.menu-link:hover i {
+  transform: scale(1.2) rotate(-5deg);
+  color: #ff6f61; /* Coral Accent */
+  transition: all 0.3s ease-in-out;
+}
+
+
+
+
+
+
+
+ 
