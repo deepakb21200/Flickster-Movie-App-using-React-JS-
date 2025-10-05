@@ -90,7 +90,12 @@ export default function DummyClassic() {
       style={{overflow:"visible"}}
            next={FetchClassic} 
            hasMore={hasMore && !error}   // error aaya to aur data fetch mat karo
-          loader={!error && <Search />}
+          // loader={!error && <Search />}
+             loader={!error && (
+  <div className="h-16 flex items-center justify-center">
+    <p className="text-zinc-400 text-lg">Loading movies...</p>
+  </div>
+)}
        >
          <Cards data={movies} title="movies" />
        

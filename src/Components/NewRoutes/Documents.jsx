@@ -21,6 +21,7 @@ export default function Documents() {
     try {
  
       const { data } = await axios.get(`/discover/${category}?with_genres=99&with_original_language=${language}&sort_by=popularity.desc&page=${currentPage}`);
+console.log(data);
 
  
       if (data.results.length > 0) {
@@ -59,8 +60,8 @@ export default function Documents() {
       <div className='w-screen xl:px-[30px]'>
      
         <div className='w-full flex items-center  justify-between my-[5px]   flex-wrap  pl-[30px] xl:pl-[0px]'>
-          <h1 className='text-2xl font-semibold text-zinc-400  '>
-          <i onClick={()=>Navigate(-1)} className="ri-arrow-left-line p-3 text-2xl hover:text-[#DD4343] cursor-pointer"></i>
+          <h1 className='text-2xl font-semibold text-zinc-400 '>
+          <i onClick={()=>Navigate(-1)} className="ri-arrow-left-line p-3 text-2xl hover:text-[#DD4343] cursor-pointer  "></i>
             Documentaries <small className='ml-1 text-sm text-zinc-500'>({category} {language})</small> 
           </h1>
                <Navbar/>
@@ -82,7 +83,12 @@ export default function Documents() {
            next={fetchDocumentaries}
             style={{overflow:"visible"}}
            hasMore={hasMore && !error}   // error aaya to aur data fetch mat karo
-           loader={!error && <Search />}
+          //  loader={!error && <Search />}
+             loader={!error && (
+  <div className="h-16 flex items-center justify-center">
+    <p className="text-zinc-400 text-lg">Loading movies...</p>
+  </div>
+)}
        >
            <Cards data={documentaries} title={category}/>
        </InfiniteScroll>

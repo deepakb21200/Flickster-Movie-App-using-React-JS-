@@ -9,26 +9,25 @@
 import Search from './Search';
 
   export default function Popular() {
-    const [category, setcategory] = useState("movie")
-    const [popular, setpopular] = useState([])
-    const [page, setpage] = useState(1)
-    const [hasMore, sethasMore] = useState(true)
- 
-    const [error, setError] = useState(""); 
+    let [category, setcategory] = useState("movie")
+    let [popular, setpopular] = useState([])
+    let [page, setpage] = useState(1)
+    let [hasMore, sethasMore] = useState(true)
+    let [error, setError] = useState(""); 
   document.title = "Flickster | Popular"
-    const Navigate = useNavigate()
+    let Navigate = useNavigate()
 
  
-  const GetPopular = async (currentPage = page ) => {
+  let GetPopular = async (currentPage = page ) => {
     try {
       if (category === "all") {
-        const [moviesResponse, tvResponse] = await Promise.all([
+        let [moviesResponse, tvResponse] = await Promise.all([
           axios.get(`/movie/popular?page=${currentPage}`),
           axios.get(`/tv/popular?page=${currentPage}`),
         ]);
 
 
-        const combined = [
+        let combined = [
           ...moviesResponse.data.results.map((item) => ({ ...item, media_type: "movie" })),
           ...tvResponse.data.results.map((item) => ({ ...item, media_type: "tv" })),
         ];
@@ -42,7 +41,7 @@ import Search from './Search';
           setpage((prev) => prev + 1);
 
       } else {
-        const { data } = await axios.get(`/${category}/popular?page=${currentPage}`);
+        let { data } = await axios.get(`/${category}/popular?page=${currentPage}`);
 
 
         if (data.results.length > 0) {
@@ -59,7 +58,7 @@ import Search from './Search';
     }
   };
 
-  const refreshHandler = () => {
+  let refreshHandler = () => {
     if(popular.length == 0){
     GetPopular();
   }
@@ -80,12 +79,14 @@ import Search from './Search';
 
 
  return popular.length > 0 ?  (
-      <div className='w-screen xl:px-[30px]      '>
+      <div className=' xl:px-[30px]'>
      
-        <div className='w-full flex items-center  justify-between my-[5px]   flex-wrap  pl-[30px] xl:pl-[0px]'>
+        <div className='w-full flex items-center  justify-between my-[5px]   flex-wrap  pl-[30px] xl:pl-[0px]deepak'>
+    
+
           <h1 className='text-2xl font-semibold text-zinc-400  '>
           <i onClick={()=>Navigate(-1)} className="ri-arrow-left-line p-3 text-2xl hover:text-[#DD4343]  "></i>
-           Popular <small className='ml-1 text-sm text-zinc-500'>{category}</small> 
+           Popular <small className='ml-1 text-lg text-zinc-500'>{category}</small> 
           </h1>
                <Navbar/>
           <div className='flex justify-between items-center'> 
@@ -102,9 +103,17 @@ import Search from './Search';
           dataLength={popular.length}
             next={GetPopular}
           hasMore={hasMore && !error}   // error aaya to aur data fetch mat karo
-          loader={!error && <Search />}
+          // loader={!error && <Search />}
+//              loader={!error && (
+//   <div className="h-16 flex items-center justify-center">
+//     <p className="text-zinc-400 text-lg">Loading movies...</p>
+//   </div>
+// )}
+
+loader={<h4>Loading...</h4>}
           className='w-full'
-            style={{overflow:"visible"}}>
+            // style={{overflow:"visible"}}
+            >
           <Cards data={popular} title= {category} />
         </InfiniteScroll>
 
@@ -116,6 +125,57 @@ import Search from './Search';
 )}
       </div>
     ) : <Loading />
+
+
+
+
+
+
+  //  return popular.length > 0 ? (
+  //       <div className=' w-full xl:px-[30px]   '>
+  //         <div className='w-full flex items-center justify-between'>
+  //           <h1 className='text-2xl font-semibold text-zinc-400'>
+  //             <i onClick={() => Navigate(-1)} className='hover:text-[#6556CD] ri-arrow-left-line p-3'></i>
+  //             popular</h1>
+    
+  //           <div className='flex items-center w-[80%]'>
+    
+  //    <Navbar/>
+    
+  //             <Dropdown title="Category" options={["movie", "tv"]} func={(e) => setcategory(e.target.value)} />
+      
+    
+  //           </div>
+  //         </div>
+  //         <div className='m-auto w-full'>
+    
+  //           <InfiniteScroll
+  //             dataLength={popular.length}
+  //             next={GetPopular}
+  //             hasMore={hasMore}
+  //             loader={<h4>Loading...</h4>}
+  //             >
+  //             <Cards data={popular} title={category} />
+  //           </InfiniteScroll>
+    
+  //         </div>
+    
+  //       </div>
+  //     ) : <Loading />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -4,6 +4,7 @@ import Header from './partials/Header';
 import HorizCards from './partials/HorizCards';
 import axios from '../utils/Axios'
 import Loading from './Loading';
+import LeftSideBar from './partials/LeftSideBar';
  
 function Home() {
   document.title = "Flickster"  
@@ -90,6 +91,7 @@ SetAllData(prev => ({
 
   return (wallpaper) ? (
     <>
+    {/* <LeftSideBar/> */}
   <div className='w-full h-screen overflow-auto'
          style={{
     // scrollbarWidth: "none",  

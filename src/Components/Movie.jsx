@@ -54,7 +54,7 @@ const GetMovie = async (currentPage = page) => {
 
 
  return movie.length > 0 ?  (
-      <div className='w-screen xl:px-[30px]'>
+      <div className='w-full xl:px-[30px]'>
      
         <div className='w-full flex items-center  justify-between my-[10px]   flex-wrap  pl-[30px] xl:pl-[0px]'>
           <h1 className='text-2xl font-semibold text-zinc-400  '>
@@ -77,8 +77,14 @@ const GetMovie = async (currentPage = page) => {
             next={GetMovie}
            hasMore={hasMore && !error}   // error aaya to aur data fetch mat karo
          loader={!error && <Search />}
+//    loader={!error && (
+//   <div className="h-16 flex items-center justify-center">
+//     <p className="text-zinc-400 text-lg">Loading movies...</p>
+//   </div>
+// )}
           className='w-full'
             style={{overflow:"visible"}}
+             scrollThreshold={1} 
             
         >
          <Cards data={movie} title="movie" />
@@ -94,5 +100,99 @@ const GetMovie = async (currentPage = page) => {
 )}
       </div>
     ) : <Loading />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// px-[3%] xl:px-[30px]
+    // return movie.length > 0 ? (
+    //     <div className=' px-[3%] xl:px-[30px]'>
+    //       <div className='w-full flex items-center justify-between'>
+    //         <h1 className='text-2xl font-semibold text-zinc-400'>
+    //           <i onClick={() => Navigate(-1)} className='hover:text-[#6556CD] ri-arrow-left-line p-3'></i>
+    //           movie <small className='ml-1 text-sm text-zinc-500'>({category})  </small></h1>
+    
+    //         <div className='flex items-center w-[80%]'>
+    
+    //      <Navbar/>
+    
+    //           <Dropdown title="Category" options={["popular", "top_rated", "upcoming", "now_playing"]} func={(e) => setcategory(e.target.value)} />
+    //           <div className='w-[2%]'></div>
+    
+    //         </div>
+    //       </div>
+    //       <div className='m-auto w-screen'>
+    
+    //         <InfiniteScroll
+    //           dataLength={movie.length}
+    //           next={GetMovie}
+    //           hasMore={hasMore}
+    //           className='w-full'
+    //           style={{overflowX:"hidden"}}
+    //           loader={<h4>Loading...</h4>}
+    //           >
+    //           <Cards data={movie} title="movie" />
+    //         </InfiniteScroll>
+    
+    //       </div>
+    
+    //     </div>
+    //   ) : <Loading />
+
+
+
+
+
+
+
 
 }

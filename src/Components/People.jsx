@@ -47,7 +47,7 @@ function People() {
 
 
  return people.length > 0 ?  (
-      <div className='w-screen xl:px-[30px]'>
+      <div className='w-full xl:px-[30px]'>
      
         <div className='w-full flex items-center  justify-between my-[5px]   flex-wrap  pl-[30px] xl:pl-[0px]'>
           <h1 className='text-2xl font-semibold text-zinc-400  '>

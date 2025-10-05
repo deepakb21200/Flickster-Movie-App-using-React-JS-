@@ -24,7 +24,7 @@ import ContactUs from './Components/partials/ContactUs.jsx'
 export default function App() {
   
   return (
-      <div className={`  w-full flex bg-custom-gradient   `}>
+      <div className={`w-full   flex`}>
    <LeftSideBar/>
         <Routes>
    

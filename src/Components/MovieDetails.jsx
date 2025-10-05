@@ -230,7 +230,8 @@ console.log(info);
       {info.recommendations?.length > 0 ? "Recommendations" : "Similar"}
     </h1>
     <HorizCards 
-      data={info.recommendations?.length > 0 ? info.recommendations : info.similar} />
+      data={info.recommendations?.length > 0 ? info.recommendations : info.similar} 
+      title="movie"/>
     <Outlet />
   </>
 )}

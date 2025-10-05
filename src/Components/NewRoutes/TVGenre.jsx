@@ -83,7 +83,8 @@ if(genrelist.length == 0){
   <>
     <i
       onClick={() => Navigate(-1)}
-      className="ri-arrow-left-line p-1 text-2xl rounded-full text-white hover:text-white cursor-pointer transition-all"
+      className="ri-arrow-left-line p-3 text-2xl hover:text-[#DD4343] text-zinc-400
+      cursor-pointer"
     ></i>
 
     {genrelist.map((genre) => (
@@ -119,7 +120,12 @@ if(genrelist.length == 0){
           dataLength={moviesArr.length}
           next={() => fetchMovies(selectedGenre?.id, page)}
            hasMore={hasMore && !error}   // error aaya to aur data fetch mat karo
-           loader={!error && <Search />}
+          //  loader={!error && <Search />}
+            loader={!error && (
+  <div className="h-16 flex items-center justify-center">
+    <p className="text-zinc-400 text-lg">Loading movies...</p>
+  </div>
+)}
           style={{ overflow: "visible" }}
         >
           <Cards data={moviesArr} title="tv" />

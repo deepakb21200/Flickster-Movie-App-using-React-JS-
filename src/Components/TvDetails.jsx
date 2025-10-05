@@ -49,14 +49,16 @@ import Navbar from './partials/Navbar';
   backgroundPosition: "center",
   backgroundSize: "cover",
   backgroundRepeat: "no-repeat",
-
+  height:"100%"
 }}
  className={`relative w-full     px-4 sm:px-6 xl:px-[10%] py-6 
-  ${
-    info.recommendations.length > 0 || info.similar.length > 0 ? "" : "h-screen"
-  }
+ 
  `} >
-       
+
+   {/* ${
+    info.recommendations.length > 0 || info.similar.length > 0 ? "h-screen" : "h-screen"
+  }
+        */}
         <nav className="h-[8vh] w-full flex items-center gap-x-6 sm:gap-x-10  text-zinc-100 text-lg sm:text-2xl
         pl-[30px] xl:pl-[0px] flex-wrap  xl:justify-start">
         
@@ -263,6 +265,7 @@ import Navbar from './partials/Navbar';
     <HorizCards
       data={info.recommendations?.length > 0 ? info.recommendations : info.similar}
       original={info.detail.id}
+      title="tv"
 
     />
   </>

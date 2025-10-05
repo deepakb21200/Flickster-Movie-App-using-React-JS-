@@ -71,15 +71,91 @@ if(genrelist.length == 0){
 }
 
 
+//   return (
+   
+//     <div className="py-6 px-[30px] w-full h-full">
+ 
+//       <div className="flex flex-wrap items-center gap-3 py-2 px-2">
+//      {genrelist.length > 0 && (
+//   <>
+//     <i
+//       onClick={() => Navigate(-1)}
+//       className="ri-arrow-left-line p-3 text-2xl hover:text-[#DD4343] text-zinc-400"
+//     ></i>
+
+//     {genrelist.map((genre) => (
+//       <button
+//         key={genre.id}
+//         className={`flex-shrink-0 px-5 py-2 rounded-full font-semibold text-sm transition-all whitespace-nowrap
+//           ${selectedGenre?.id === genre.id
+//             ? 'bg-red-500 text-white shadow-md'
+//             : 'bg-gray-200 text-gray-800 hover:bg-red-500 hover:text-white hover:shadow-sm'
+//           }`}
+//         onClick={() => onGenreClick(genre)}
+//       >
+//         {genre.name}
+//       </button>
+//     ))}
+//   </>
+// )  }
+//       </div>
+
+
+//       {loading && moviesArr.length === 0 && (
+    
+//         <Search/>
+//       )}
+ 
+     
+
+//       {moviesArr.length > 0 && (
+//         <InfiniteScroll
+//           dataLength={moviesArr.length}
+//           next={() => fetchMovies(selectedGenre.id, page)}
+//            hasMore={hasMore && !error}   // error aaya to aur data fetch mat karo
+//           //  loader={!error && <Search />}
+//             loader={!error && (
+//   <div className="h-16 flex items-center justify-center">
+//     <p className="text-zinc-400 text-lg">Loading movies...</p>
+//   </div>
+// )}
+//           style={{ overflow: "visible" }}
+//           scrollThreshold={0.9}
+//         >
+//           <Cards data={moviesArr} title="movie" />
+//         </InfiniteScroll>
+
+
+//       )}
+
+
+//            {error && (
+//   <p className="flex items-center justify-center gap-2 text-red-500 text-lg font-semibold ">
+//     <i className="ri-error-warning-line text-5xl "></i>
+//     Something went wrong, please try again!
+//   </p>
+// )}
+//     </div>
+//   );
+
+
+
+
+
+
+
+
   return (
-    <div className="py-6 px-[30px] w-full h-screen">
+   
+    <div className="py-6 px-[30px] w-full h-full">
  
       <div className="flex flex-wrap items-center gap-3 py-2 px-2">
      {genrelist.length > 0 && (
   <>
     <i
       onClick={() => Navigate(-1)}
-      className="ri-arrow-left-line p-1 text-2xl rounded-full text-white hover:text-white cursor-pointer transition-all"
+      className="ri-arrow-left-line p-3 text-2xl hover:text-[#DD4343] text-zinc-400
+      cursor-pointer"
     ></i>
 
     {genrelist.map((genre) => (
@@ -112,8 +188,14 @@ if(genrelist.length == 0){
           dataLength={moviesArr.length}
           next={() => fetchMovies(selectedGenre.id, page)}
            hasMore={hasMore && !error}   // error aaya to aur data fetch mat karo
-           loader={!error && <Search />}
+          //  loader={!error && <Search />}
+            loader={!error && (
+  <div className="h-16 flex items-center justify-center">
+    <p className="text-zinc-400 text-lg">Loading movies...</p>
+  </div>
+)}
           style={{ overflow: "visible" }}
+          scrollThreshold={0.9}
         >
           <Cards data={moviesArr} title="movie" />
         </InfiniteScroll>
@@ -129,5 +211,14 @@ if(genrelist.length == 0){
   </p>
 )}
     </div>
+
+
+
   );
+
+
+
+
+
+
 }

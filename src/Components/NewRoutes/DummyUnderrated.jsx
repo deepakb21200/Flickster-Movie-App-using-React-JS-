@@ -61,7 +61,7 @@ if(underrated.length == 0){
  
 
  return underrated.length > 0 ?  (
-      <div className='w-screen xl:px-[30px]'>
+      <div className=' xl:px-[30px]'>
      
         <div className='w-full flex items-center  justify-between my-[5px]   flex-wrap  pl-[30px] xl:pl-[0px]'>
           <h1 className='text-2xl font-semibold text-zinc-400  '>
@@ -85,7 +85,16 @@ if(underrated.length == 0){
           dataLength={underrated.length}
          next={fetchUnderrated}
           hasMore={hasMore && !error}   // error aaya to aur data fetch mat karo
-         loader={!error && <Search />}>
+
+          
+        //  loader={!error && <Search />}
+          loader={!error && (
+  <div className="h-16 flex items-center justify-center">
+    <p className="text-zinc-400 text-lg">Loading movies...</p>
+  </div>
+)}
+         
+         >
 
        <Cards data={underrated} title="movie" />
       </InfiniteScroll>

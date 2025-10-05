@@ -9,19 +9,19 @@ import Loading from './Loading';
 import Search from './Search';
  
 export default function Trending() {
-      const [category, setcategory] = useState("all")  
-  const [duration, setduration] = useState("day") 
-  const [trending, settrending] = useState([])
-  const [page, setpage] = useState(1)
-  const [hasMore, sethasMore] = useState(true)
-     const [error, setError] = useState(""); 
+    let [category, setcategory] = useState("all")  
+  let [duration, setduration] = useState("day") 
+  let [trending, settrending] = useState([])
+  let [page, setpage] = useState(1)
+  let [hasMore, sethasMore] = useState(true)
+     let [error, setError] = useState(""); 
   document.title = "Flickster | Trending"  
-  const Navigate = useNavigate()
+  let Navigate = useNavigate()
  
 
-  const GetTrending = async (currentPage=page) => {
+  let GetTrending = async (currentPage= page) => {
   try {
-    const { data } = await axios.get(`/trending/${category}/${duration}?page=${currentPage}`);
+    let { data } = await axios.get(`/trending/${category}/${duration}?page=${currentPage}`);
  
     
     if (data.results.length > 0) {
@@ -36,7 +36,7 @@ export default function Trending() {
   }
 };
 
-const refreshHandler = () => {
+let refreshHandler = () => {
  
   // setpage(1);
   // settrending([]);
@@ -63,42 +63,45 @@ useEffect(() => {
 }, [category, duration]);
 
  return trending.length > 0 ?  (
-      <div className='w-screen xl:px-[30px]'>
+      <div className=' xl:px-[30px]'>
      
         <div className='w-full flex items-center  justify-between my-[5px]   flex-wrap  pl-[30px] xl:pl-[0px]'>
-          <h1 className='text-2xl font-semibold text-zinc-400'>
-
-          <i onClick={()=>Navigate(-1)} className="ri-arrow-left-line p-3 text-2xl hover:text-[#DD4343]"></i>
-            Trending <small className='ml-1 text-lg text-zinc-500'>{category},{duration}</small> 
+          <h1 className='text-2xl font-semibold text-zinc-400  '>
+          <i onClick={()=>Navigate(-1)} className="ri-arrow-left-line p-3 text-2xl hover:text-[#DD4343] 
+          cursor-pointer "></i>
+             Trending  <small className='ml-1 text-sm text-zinc-500'>({category},{duration})</small> 
           </h1>
                <Navbar/>
-          <div className='flex justify-between   items-center'>
+          <div className='flex justify-between  items-center'>
             <div className='flex '>
-               <Dropdown title="Category" options={["movie", "tv", "all"]} func={(e) => setcategory(e.target.value)} 
-                value={category} />
-         
-            <Dropdown title="Duration" options={["week", "day"]} func={(e) => setduration(e.target.value)} 
-                value={duration} />
+               <Dropdown title="Category" options={["movie", "tv", "movie,tv,people"]} func={(e) => setcategory(e.target.value)}   value={category}   />
+
+            <Dropdown title="Duration" options={["week", "day"]} func={(e) => setduration(e.target.value)} value={duration} />
             </div>
-          
+       
 
           </div>
         </div>
 
-        <InfiniteScroll
-          dataLength={trending.length}
-            next={GetTrending}
-                hasMore={hasMore && !error}   // error aaya to aur data fetch mat karo
-           loader={!error && <Search />}
-          className='w-full'
-            style={{overflow:"visible"}}
-            
-        >
-          <Cards data={trending} title="tv" />
-        </InfiniteScroll>
+       <InfiniteScroll
+         dataLength={trending.length}
+        next={GetTrending}
+          hasMore={hasMore && !error}   // error aaya to aur data fetch mat karo
+ 
+          
+         loader={!error && <Search />}
+//           loader={!error && (
+//   <div className="h-16 flex items-center justify-center">
+//     <p className="text-zinc-400 text-lg">Loading movies...</p>
+//   </div>
+// )}
+         
+         >
 
+      <Cards data={trending}  />
+      </InfiniteScroll>
 
-           {error && (
+          {error && (
   <p className="flex items-center justify-center gap-2 text-red-500 text-lg font-semibold ">
     <i className="ri-error-warning-line text-5xl "></i>
     Something went wrong, please try again!
@@ -108,18 +111,13 @@ useEffect(() => {
     ) : <Loading />
 
 
+
+
+
+
+
+
  
-
-
-
-
-
-
-
-
-
-
-
 
 
 
