@@ -24,7 +24,7 @@ export default function DummyClassic() {
     try {
  
       const { data } = await axios.get(`/discover/${category}?with_original_language=${language}&first_air_date.lte=2000-01-01&sort_by=vote_average.desc&page=${currentPage}`);
- console.log(data);
+
  
 
       if (data.results.length > 0) {

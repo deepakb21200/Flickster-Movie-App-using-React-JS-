@@ -74,7 +74,7 @@ SetAllData(prev => ({
 //  const randomIndex = Math.floor(Math.random() * data1.data.results.length);
 //           setwallpaper(data1.data.results[randomIndex]);   
 
-console.log(data1.data.results);
+
 
 
 if (!wallpaper) {

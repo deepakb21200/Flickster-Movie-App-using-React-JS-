@@ -187,7 +187,6 @@ console.log(info);
 </div>
 
 
- 
 
         </div>
       </div>

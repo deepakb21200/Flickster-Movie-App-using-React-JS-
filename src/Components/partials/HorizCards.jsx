@@ -150,15 +150,6 @@ const [display, setDisplay] = useState(false); //
            }
       </div>
 
-
-
-
-
-
-
-
-
-
  </div>
      
     </div>
