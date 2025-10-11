@@ -192,7 +192,7 @@ console.log(info);
         </div>
       </div>
 
- <HorizPeople data={info.credits} title="cast"/> 
+ <HorizPeople data={info.credits}/> 
       {/* 🔹 Platforms */}
       <div className="w-full  md:flex-row  flex flex-col gap-6 mt-10 text-white justify-center items-center">
         {info.watchproviders?.flatrate && (

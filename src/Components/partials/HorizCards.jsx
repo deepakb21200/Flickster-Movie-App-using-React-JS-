@@ -123,13 +123,7 @@ const [display, setDisplay] = useState(false); //
         {data.length > 0 && limitedData.map((d, i) => (
               <Link to={ d.season_number ? `/tv/${original}/season/${d.season_number}`
       : `/${d.media_type || title }/details/${d.id}`}  key={i}
-                // className="min-w-[450px] rounded-lg bg-zinc-900 overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-2xl"
-                className={`rounded-lg bg-zinc-900 overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-2xl ${
-  title === "cast" ? "min-w-[160px] h-[260px]" : "min-w-[450px]"
-}`}
-
-                
-                >
+                className="min-w-[450px] rounded-lg bg-zinc-900 overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-2xl" >
                 
     
                 <img src={
