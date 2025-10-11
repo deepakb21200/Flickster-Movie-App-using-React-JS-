@@ -9,6 +9,7 @@
     import image from '/image2.png'
    
 import Navbar from './partials/Navbar';
+import HorizPeople from './partials/HorizPeople';
 
   export default function TvDetails() {
     const { pathname } = useLocation()
@@ -178,7 +179,7 @@ import Navbar from './partials/Navbar';
 
    
   
- 
+ <HorizPeople data={info.credits} title="cast"/>
           {info.watchproviders?.flatrate && (
 
             <div  className="w-full  md:flex-row  flex flex-col gap-6 mt-10 text-white justify-center items-center">

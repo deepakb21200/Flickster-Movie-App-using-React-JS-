@@ -79,11 +79,10 @@ console.log(data1.data.results);
 
 if (!wallpaper) {
         const randomIndex = Math.floor(Math.random() * data1.data.results.length);
-        // setWallpaper(data1.data.results[randomIndex]);
-        // console.log(data1.data.results[randomIndex],"g");
+        setWallpaper(data1.data.results[randomIndex]);
+        console.log(data1.data.results[randomIndex],"g");
 
-                setWallpaper(data1.data.results[8]);
-        console.log(data1.data.results[8],"g");
+ 
       }
     }
     catch (err) {

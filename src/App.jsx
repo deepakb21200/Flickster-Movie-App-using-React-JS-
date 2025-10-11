@@ -45,10 +45,7 @@ export default function App() {
 
                </Route>
 
-{/* 
-               <Route path='/movie/details/:id' element={<MovieDetails />}>
-  <Route path='trailer' element={<Video />} />
-</Route> */}
+ 
 
 
              <Route path='/tv' element={<TvShows/>} />

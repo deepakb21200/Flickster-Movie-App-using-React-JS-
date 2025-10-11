@@ -25,6 +25,8 @@ function People() {
        const { data } = await axios.get(`/person/popular?page=${currentPage}`)
         
         if(data.results.length > 0){
+          console.log(data.results);
+          
           setpeople((prev)=>[...prev, ...data.results]);
           setpage((prev)=> prev + 1 )
         }

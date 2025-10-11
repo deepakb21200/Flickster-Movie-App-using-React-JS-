@@ -18,8 +18,8 @@ function Video() {
     <div className='top-[0] left-0 z-[1000] absolute w-full h-screen flex items-center justify-center text-2xl text-white bg-[rgba(0,0,0,.9)] '>
       <Link
         onClick={() => navigate(-1)}
-        className="absolute hover:text-[#6556CD] right-[5%] top-[10%] ri-close-fill z-[999]"> </Link>
-     
+        className="absolute hover:text-[#DD4343] right-[5%] top-[10%] ri-close-fill z-[999]"> </Link>
+     {/* Robot Holocaust */}
 
       {ytvideo && (
       <iframe

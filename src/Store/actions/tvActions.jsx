@@ -14,6 +14,7 @@ import { loadtv } from "../reducers/tvSlice";
         translations,
         videos,
         watchproviders,
+          credits
       ] = await Promise.all([
         axios.get(`/tv/${id}`),
         axios.get(`/tv/${id}/external_ids`),
@@ -22,6 +23,8 @@ import { loadtv } from "../reducers/tvSlice";
         axios.get(`/tv/${id}/translations`),
         axios.get(`/tv/${id}/videos`),
         axios.get(`/tv/${id}/watch/providers`),
+        axios.get(`/tv/${id}/credits`)
+
       ]);
 
       let theultimatedetails = {
@@ -32,6 +35,7 @@ import { loadtv } from "../reducers/tvSlice";
         translations: translations.data.translations.map((t) => t.english_name),
         videos: videos.data.results.find((m) => m.type === "Trailer"),
         watchproviders: watchproviders.data.results?.IN,  
+        credits:credits.data.cast
       };
 
       dispatch(loadtv(theultimatedetails));

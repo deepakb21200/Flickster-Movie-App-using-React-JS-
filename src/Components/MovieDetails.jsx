@@ -8,6 +8,7 @@ import { asyncloadmovie, } from "../Store/actions/movieActions";
 import { removemovie } from '../Store/reducers/movieSlice';
  import image from '/image2.png'
 import Navbar from './partials/Navbar';
+import HorizPeople from './partials/HorizPeople';
 
 export default function MovieDetails() {
   const { pathname } = useLocation()
@@ -191,6 +192,7 @@ console.log(info);
         </div>
       </div>
 
+ <HorizPeople data={info.credits} title="cast"/> 
       {/* 🔹 Platforms */}
       <div className="w-full  md:flex-row  flex flex-col gap-6 mt-10 text-white justify-center items-center">
         {info.watchproviders?.flatrate && (

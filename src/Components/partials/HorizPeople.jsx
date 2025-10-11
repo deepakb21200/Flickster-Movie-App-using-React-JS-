@@ -4,11 +4,11 @@ import { FaChevronRight } from "react-icons/fa";
   import altpic from '/noimages.png'
 import { Link } from "react-router-dom";
 
-export default function HorizCards({ data ,title,viewMoreRoute, original}) {
+export default function HorizPeople({ data ,title,viewMoreRoute, original}) {
 
   
-  const initialLimit = 20;
-  const limitedData = data.slice(0, initialLimit);
+ 
+ 
 
   const scrollRef = useRef(null);
   const [showLeft, setShowLeft] = useState(false);
@@ -115,55 +115,41 @@ const [display, setDisplay] = useState(false); //
   <FaChevronRight />
 </button>
 
-   <div
-        ref={scrollRef}
-        className="w-full flex gap-5 overflow-hidden scrollbar-hide  scroll-smooth relative  
-         ">
+<div
+  ref={scrollRef}
+  className="w-full flex gap-5 overflow-x-auto scrollbar-hide scroll-smooth relative "
+   style={{
+    scrollbarWidth: 'none',        // Firefox
+    msOverflowStyle: 'none'        // IE 10+
+  }}
+>
+  {data.length > 0 &&
+    data.map((d, i) => (
+      <Link
+        to={`/person/details/${d.id}`} // actor detail page
+        key={i}
+        className="min-w-[200px] h-[260px] rounded-lg bg-zinc-900 overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-2xl "
+      >
+        {/* Actor Image */}
+        <img
+          src={
+            d.profile_path
+              ? `https://image.tmdb.org/t/p/original${d.profile_path}`
+              : altpic
+          }
+          alt={d.name || "No Image"}
+          className="w-full h-[200px] object-cover rounded-lg transition-transform duration-300 hover:scale-105"
+        />
 
-        {data.length > 0 && limitedData.map((d, i) => (
-              <Link to={ d.season_number ? `/tv/${original}/season/${d.season_number}`
-      : `/${d.media_type || title }/details/${d.id}`}  key={i}
-                // className="min-w-[450px] rounded-lg bg-zinc-900 overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-2xl"
-                className={`rounded-lg bg-zinc-900 overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-2xl ${
-  title === "cast" ? "min-w-[160px] h-[260px]" : "min-w-[450px]"
-}`}
-
-                
-                >
-                
-    
-                <img src={
-    d.backdrop_path || d.poster_path
-      ? `https://image.tmdb.org/t/p/w500${d.backdrop_path || d.poster_path}`
-      : altpic
-  }
-  alt={d.title || d.name || "No Image"}
-  className={`w-full h-[300px] rounded-lg transition-transform duration-300 hover:scale-105 ${
-    d.backdrop_path || d.poster_path ? "object-cover" : "object-contain"
-  }`}
-/>
-
-                <div className="px-3 py-2 bg-gradient-to-t from-black/60 to-transparent relative">
-                  <h3 className="text-lg font-semibold text-zinc-200 truncate">
-                    { d.title  || d.original_title || d.name || d.original_name   }
-                  </h3>
-                  <p className="text-xs text-zinc-400 line-clamp-2">
-                    {d.overview?.slice(0, 80)}...
-                  </p>
-                </div>
-              </Link>
-            ))
-           }
-      </div>
-
-
-
-
-
-
-
-
-
+        {/* Actor Name */}
+        <div className="px-2 py-1 text-center">
+          <h3 className="text-sm font-semibold text-zinc-100 truncate">
+            {d.name}
+          </h3>
+        </div>
+      </Link>
+    ))}
+</div>
 
  </div>
      
