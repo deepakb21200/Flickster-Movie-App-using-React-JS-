@@ -8,6 +8,7 @@ import { asyncloadmovie, } from "../Store/actions/movieActions";
 import { removemovie } from '../Store/reducers/movieSlice';
  import image from '/image2.png'
 import Navbar from './partials/Navbar';
+
 export default function MovieDetails() {
   const { pathname } = useLocation()
   const navigate = useNavigate();
@@ -28,27 +29,34 @@ console.log(info);
 
   },[info])
 
+
   return info ? (
 
- 
-      <div style={{
+
+  <div style={{
   backgroundImage: `linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url(${
-    info.detail.backdrop_path
-      ? `https://image.tmdb.org/t/p/original${info.detail.backdrop_path}`
-      : "https://placehold.co/1920x1080?text=No+Image"})`,
-  backgroundPosition: "center",
-  backgroundSize: "cover",
-  backgroundRepeat: "no-repeat"
-}}
-     className={`relative w-full overflow-auto px-4 sm:px-6 xl:px-[10%] py-6  ${
+      info.detail.backdrop_path
+        ? `https://image.tmdb.org/t/p/original${info.detail.backdrop_path}`
+        : "https://placehold.co/1920x1080?text=No+Image"
+    })`,
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+  
+
+  }}
+
+
+     className={`relative w-full overflow-auto px-4 sm:px-6 xl:px-[10%] py-6 h-full  ${
     info.recommendations.length > 0 || info.similar.length > 0 ? "h-full" : "h-screen"
   }`}>
+ 
       {/* 🔹 Navigation */}
       <nav className="h-[8vh] w-full flex items-center gap-x-6 sm:gap-x-10  text-zinc-100 text-lg sm:text-2xl
         pl-[30px] xl:pl-[0px]   flex-wrap    xl:justify-start">
         <Link
           onClick={() => navigate(-1)}
-          className="hover:text-[#6556CD] ri-arrow-left-line"
+          className="hover:text-[#DD4343] ri-arrow-left-line"
         ></Link>
 {info.detail.homepage && (
   <a target="_blank" rel="noreferrer" href={info.detail.homepage}>
@@ -83,17 +91,23 @@ console.log(info);
       </nav>
 
       {/* 🔹 Poster + Details */}
-      <div className="w-full flex flex-col md:flex-row gap-6 mt-6  justify-between">
-         
-
-<img className={`shadow-lg h-[40vh] sm:h-[50vh] md:h-[55vh] border-2 rounded-xl mx-auto md:mx-0 w-[40vh]
-    object-cover`}
+      <div className="w-full  flex-shrink-0 flex flex-col md:flex-row gap-6 mt-6  justify-between">
  
-  src={ info.detail.poster_path
-          ? `https://image.tmdb.org/t/p/original${info.detail.poster_path}`: image}
-  alt={info.detail.title || info.detail.name || "No Image"}/>
+ 
 
-        <div className="  md:ml-[5%] flex flex-col text-white  justify-center items-center">
+<img
+  className={`shadow-lg h-[40vh] sm:h-[50vh] md:h-[55vh] rounded-xl mx-auto md:mx-0 w-[40vh] object-cover`}
+  src={
+    info.detail.poster_path
+      ? `https://image.tmdb.org/t/p/original${info.detail.poster_path}`
+      : image
+  }
+  alt={info.detail.title || info.detail.name || "No Image"}
+/>
+
+ 
+{/* md:ml-[5%]  */}
+        <div className=" md:ml-[5%]  flex flex-col text-white  justify-center items-center">
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-black">
             { info.detail.title|| info.detail.original_title  || info.detail.original_name   ||
               
@@ -130,7 +144,10 @@ console.log(info);
  
   <div className="flex flex-col items-center">
     <h1 className="text-sm sm:text-base md:text-base">Runtime</h1>
-    <span className="mt-1">{info.detail?.runtime || "N.A"} min</span>
+<span className="mt-1">
+  {info.detail?.runtime ? `${info.detail.runtime} min` : "N.A"}
+</span>
+
   </div>
 </div>
 
@@ -223,6 +240,7 @@ console.log(info);
       </div>
 
 
+
 {(info.recommendations?.length > 0 || info.similar?.length > 0) && (
   <>
     <hr className="mt-10 mb-6 border-none h-[2px] bg-zinc-600" />
@@ -232,10 +250,10 @@ console.log(info);
     <HorizCards 
       data={info.recommendations?.length > 0 ? info.recommendations : info.similar} 
       title="movie"/>
-    <Outlet />
+    
   </>
 )}
-
+<Outlet />
       
     </div>
     

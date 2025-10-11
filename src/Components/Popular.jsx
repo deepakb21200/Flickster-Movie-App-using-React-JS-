@@ -77,45 +77,33 @@ import Search from './Search';
   }, [category]);
   
 
-
  return popular.length > 0 ?  (
       <div className=' xl:px-[30px]'>
      
-        <div className='w-full flex items-center  justify-between my-[5px]   flex-wrap  pl-[30px] xl:pl-[0px]deepak'>
-    
-
-          <h1 className='text-2xl font-semibold text-zinc-400  '>
-          <i onClick={()=>Navigate(-1)} className="ri-arrow-left-line p-3 text-2xl hover:text-[#DD4343]  "></i>
-           Popular <small className='ml-1 text-lg text-zinc-500'>{category}</small> 
+        <div className='w-full   flex items-center   justify-center my-[5px]   flex-wrap  p-[10px]  '>
+          <h1 className='text-2xl font-semibold text-zinc-400   px-[30px]'>
+          <i onClick={()=>Navigate(-1)} className="ri-arrow-left-line p-3 text-2xl hover:text-[#DD4343] 
+          cursor-pointer "></i>
+             Popular  <small className='ml-1 text-lg text-zinc-500'>({category})</small> 
           </h1>
                <Navbar/>
-          <div className='flex justify-between items-center'> 
+          <div className='flex justify-between  items-center'>
             <div className='flex '>
-                 <Dropdown title="Category" options={["movie", "tv", "all"]} func={(e) => setcategory(e.target.value)} 
-            value={category}  />
+                  <Dropdown title="Category" options={["movie", "tv", "all"]} func={(e) => setcategory(e.target.value)}    value={category}  />
             </div>
-          
+       
 
           </div>
         </div>
 
-        <InfiniteScroll
-          dataLength={popular.length}
-            next={GetPopular}
-          hasMore={hasMore && !error}   // error aaya to aur data fetch mat karo
-          // loader={!error && <Search />}
-//              loader={!error && (
-//   <div className="h-16 flex items-center justify-center">
-//     <p className="text-zinc-400 text-lg">Loading movies...</p>
-//   </div>
-// )}
-
-loader={<h4>Loading...</h4>}
-          className='w-full'
-            // style={{overflow:"visible"}}
-            >
-          <Cards data={popular} title= {category} />
-        </InfiniteScroll>
+         <InfiniteScroll
+            dataLength={popular.length}
+           next={GetPopular}
+           hasMore={hasMore && !error}   // error aaya to aur data fetch mat karo
+          loader={!error && <Search />}
+           className='w-full' >
+            <Cards data={popular} title= {category} />
+      </InfiniteScroll>
 
           {error && (
   <p className="flex items-center justify-center gap-2 text-red-500 text-lg font-semibold ">
@@ -125,58 +113,6 @@ loader={<h4>Loading...</h4>}
 )}
       </div>
     ) : <Loading />
-
-
-
-
-
-
-  //  return popular.length > 0 ? (
-  //       <div className=' w-full xl:px-[30px]   '>
-  //         <div className='w-full flex items-center justify-between'>
-  //           <h1 className='text-2xl font-semibold text-zinc-400'>
-  //             <i onClick={() => Navigate(-1)} className='hover:text-[#6556CD] ri-arrow-left-line p-3'></i>
-  //             popular</h1>
-    
-  //           <div className='flex items-center w-[80%]'>
-    
-  //    <Navbar/>
-    
-  //             <Dropdown title="Category" options={["movie", "tv"]} func={(e) => setcategory(e.target.value)} />
-      
-    
-  //           </div>
-  //         </div>
-  //         <div className='m-auto w-full'>
-    
-  //           <InfiniteScroll
-  //             dataLength={popular.length}
-  //             next={GetPopular}
-  //             hasMore={hasMore}
-  //             loader={<h4>Loading...</h4>}
-  //             >
-  //             <Cards data={popular} title={category} />
-  //           </InfiniteScroll>
-    
-  //         </div>
-    
-  //       </div>
-  //     ) : <Loading />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   }

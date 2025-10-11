@@ -4,9 +4,9 @@ import Header from './partials/Header';
 import HorizCards from './partials/HorizCards';
 import axios from '../utils/Axios'
 import Loading from './Loading';
-import LeftSideBar from './partials/LeftSideBar';
+
  
-function Home() {
+function Home({ wallpaper, setWallpaper }) {
   document.title = "Flickster"  
   let [AllData,SetAllData] =useState({
       trending:[],                                  
@@ -19,7 +19,7 @@ function Home() {
 
 
   
-  const [wallpaper, setwallpaper] = useState(null)
+  // const [wallpaper, setwallpaper] = useState(null)
  
 
 
@@ -33,7 +33,7 @@ const GetHeaderwallpaper = async () => {
         underMovieUrl,underTvUrl,
          classicMovies, classicTVs] = await Promise.all([
           axios.get(`/trending/all/day`),//trending
-          axios.get(`/discover/movie?with_genres=28`), //movie genre type = action 
+          axios.get(`/discover/movie?with_genres=28`), // movie genre type = action 
           axios.get( `/discover/tv?with_genres=10759`), //tv genre type = action & classic ek hota hi tv me 
            axios.get(`/discover/movie?with_genres=99&with_original_language=hi&sort_by=popularity.desc`), //doc movies
           axios.get(`/discover/tv?with_genres=99&with_original_language=hi&sort_by=popularity.desc`), //doc tv
@@ -71,8 +71,20 @@ SetAllData(prev => ({
 
 
 
- const randomIndex = Math.floor(Math.random() * data1.data.results.length);
-          setwallpaper(data1.data.results[randomIndex]);   
+//  const randomIndex = Math.floor(Math.random() * data1.data.results.length);
+//           setwallpaper(data1.data.results[randomIndex]);   
+
+console.log(data1.data.results);
+
+
+if (!wallpaper) {
+        const randomIndex = Math.floor(Math.random() * data1.data.results.length);
+        // setWallpaper(data1.data.results[randomIndex]);
+        // console.log(data1.data.results[randomIndex],"g");
+
+                setWallpaper(data1.data.results[8]);
+        console.log(data1.data.results[8],"g");
+      }
     }
     catch (err) {
       console.log(err);
@@ -91,14 +103,12 @@ SetAllData(prev => ({
 
   return (wallpaper) ? (
     <>
-    {/* <LeftSideBar/> */}
-  <div className='w-full h-screen overflow-auto'
-         style={{
-    // scrollbarWidth: "none",  
-msOverflowStyle: "none",  
-  }}>
-          <div className='  flex justify-center'>
-            <Navbar/>
+
+  <div className='w-full h-screen overflow-auto'>
+          <div className='  flex justify-center py-[15px]'>
+          
+              <Navbar/>
+             
           </div>
           <Header data={wallpaper}/>
  

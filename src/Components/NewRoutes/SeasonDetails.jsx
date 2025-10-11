@@ -67,7 +67,7 @@ useEffect(() => {
      pl-[30px] xl:pl-[0px] flex-wrap     xl:justify-start">
         <Link
           onClick={() => navigate(-1)}
-          className="hover:text-[#6556CD] ri-arrow-left-line"
+          className="hover:text-[#DD4343] ri-arrow-left-line"
         ></Link>
         {/* Homepage */}
 {tvInfo.detail?.homepage && (
@@ -251,10 +251,7 @@ useEffect(() => {
       {/* 🔹 Recommendations */}
   
       <hr className="mt-10 mb-6 border-none h-[2px] bg-zinc-600" />
-      {/* <h1 className="text-xl sm:text-2xl font-semibold text-white mb-4">
-        Recommendations & Similar Stuff
-      </h1>
-      <HorizCards data={tvInfo.recommendations.length > 0 ? tvInfo.recommendations : tvInfo.similar} original={tvInfo.id}/> */}
+
 
       {(tvInfo.recommendations?.length > 0 || tvInfo.similar?.length > 0) && (
   <>
@@ -266,10 +263,7 @@ useEffect(() => {
 
     <HorizCards
       data={tvInfo.recommendations?.length > 0 ? tvInfo.recommendations : tvInfo.similar}
-      original={tvInfo.detail.id}
-      // tvdetails="tvdetials"
-      // title="tv"
-    />
+      original={tvInfo.detail.id}/>
   </>
 )}
   
@@ -278,8 +272,6 @@ useEffect(() => {
     </div>
   ) :  <Loading />
 
- 
- 
 }
 
 export default SeasonDetails;

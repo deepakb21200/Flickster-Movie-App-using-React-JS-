@@ -37,34 +37,28 @@ import Navbar from './partials/Navbar';
 
     },[info])
 
+ 
     return info ? (
-   
-        <div 
-        style={{
-  backgroundImage: `linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url(${
+    <div
+  style={{
+    backgroundImage: `linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url(${
     info.detail.backdrop_path
-      ? `https://image.tmdb.org/t/p/original/${info.detail.backdrop_path}`
+      ? `https://image.tmdb.org/t/p/original${info.detail.backdrop_path}`
       : "https://placehold.co/1920x1080?text=No+Image"
   })`,
   backgroundPosition: "center",
   backgroundSize: "cover",
   backgroundRepeat: "no-repeat",
-  height:"100%"
-}}
- className={`relative w-full     px-4 sm:px-6 xl:px-[10%] py-6 
- 
- `} >
-
-   {/* ${
-    info.recommendations.length > 0 || info.similar.length > 0 ? "h-screen" : "h-screen"
-  }
-        */}
+  }}
+  className={`relative w-full px-4 sm:px-6 xl:px-[10%] py-6  ${
+    info.recommendations.length > 0 || info.similar.length > 0 ? "h-full" : "h-screen"
+  }`}>
         <nav className="h-[8vh] w-full flex items-center gap-x-6 sm:gap-x-10  text-zinc-100 text-lg sm:text-2xl
         pl-[30px] xl:pl-[0px] flex-wrap  xl:justify-start">
         
 
           <Link onClick={() => navigate(-1)}
-             className="hover:text-[#6556CD] ri-arrow-left-line" ></Link>
+             className="hover:text-[#DD4343] ri-arrow-left-line" ></Link>
           {info.detail.homepage && (
             <a target="_blank" rel="noreferrer" href={info.detail.homepage}>
               <i className="ri-external-link-fill"></i>

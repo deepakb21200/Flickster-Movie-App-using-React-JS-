@@ -76,7 +76,9 @@ if(genrelist.length == 0){
 
 
  return (
-    <div className="py-6 px-[30px] w-full h-screen">
+
+
+      <div className="w-full   flex items-center   justify-center my-[5px]   flex-wrap  px-[30px] py-[10px]"> 
       
       <div className="flex flex-wrap items-center gap-3 py-2 px-2">
        {genrelist.length > 0 && (
@@ -90,7 +92,7 @@ if(genrelist.length == 0){
     {genrelist.map((genre) => (
       <button
         key={genre.id}
-        className={`flex-shrink-0 px-5 py-2 rounded-full font-semibold text-sm transition-all whitespace-nowrap
+        className={`flex-shrink-0 px-5 py-2 rounded-full font-semibold text-sm transition-all whitespace-nowrap border-none
           ${selectedGenre?.id === genre.id
             ? 'bg-red-500 text-white shadow-md'
             : 'bg-gray-200 text-gray-800 hover:bg-red-500 hover:text-white hover:shadow-sm'
@@ -120,14 +122,7 @@ if(genrelist.length == 0){
           dataLength={moviesArr.length}
           next={() => fetchMovies(selectedGenre?.id, page)}
            hasMore={hasMore && !error}   // error aaya to aur data fetch mat karo
-          //  loader={!error && <Search />}
-            loader={!error && (
-  <div className="h-16 flex items-center justify-center">
-    <p className="text-zinc-400 text-lg">Loading movies...</p>
-  </div>
-)}
-          style={{ overflow: "visible" }}
-        >
+           loader={!error && <Search />}  >
           <Cards data={moviesArr} title="tv" />
         </InfiniteScroll>
       )}

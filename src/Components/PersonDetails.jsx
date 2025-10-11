@@ -28,12 +28,12 @@ export default function PersonDetails() {
 
 
 return info ? (
-  <div className="px-4 md:px-[30px] w-full bg-gray-900 min-h-screen">
+  <div className="px-4 md:px-[3%] w-full bg-gray-900   ">
     {/* Navigation */}
-    <nav className="h-[5vh] w-full flex items-center gap-6 text-gray-200 text-xl md:text-2xl">
+    <nav className="  w-full flex items-center gap-6 text-gray-200 text-xl md:text-2xl py-5  ">
       <Link
         onClick={() => navigate(-1)}
-        className="hover:text-indigo-400 ri-arrow-left-line"
+        className="hover:text-[#DD4343] ri-arrow-left-line  "
       >
         Back
       </Link>

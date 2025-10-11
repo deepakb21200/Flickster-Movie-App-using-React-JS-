@@ -15,6 +15,7 @@ export const asyncloadmovie = (id) => async (dispatch, getState) => {
       translations,
       videos,
       watchproviders,
+      credits
     ] = await Promise.all([
       axios.get(`/movie/${id}`),
       axios.get(`/movie/${id}/external_ids`),
@@ -23,6 +24,8 @@ export const asyncloadmovie = (id) => async (dispatch, getState) => {
       axios.get(`/movie/${id}/translations`),
       axios.get(`/movie/${id}/videos`),
       axios.get(`/movie/${id}/watch/providers`),
+      axios.get(`/movie/${id}/credits`)
+
     ]);
 
     let theultimatedetails = {
@@ -33,12 +36,14 @@ export const asyncloadmovie = (id) => async (dispatch, getState) => {
       translations: translations.data.translations.map((t) => t.english_name),
       videos: videos.data.results.find((m) => m.type === "Trailer"),
       watchproviders: watchproviders.data.results?.IN, 
+      credits:credits.data.cast
     };
 
-    console.log(theultimatedetails.videos,"j");
+    // console.log(theultimatedetails.videos,"j");
+    console.log(credits);
     
     dispatch(loadmovie(theultimatedetails));
-    console.log(theultimatedetails);
+    console.log(theultimatedetails,"rocks");
 
   } catch (err) {
     console.log("error", err.response?.status, err.response?.data || err.message);

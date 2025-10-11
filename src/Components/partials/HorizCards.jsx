@@ -20,16 +20,7 @@ const [display, setDisplay] = useState(false); //
 
  
  
-    const checkScroll = () => {
-      if (!scrollRef.current) return;
-      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-   
-      if(!(scrollLeft ==0)){
-        setHasScrolled(true)
-      }
-      setShowLeft(scrollLeft > 0);
-      setShowRight(scrollLeft + clientWidth < scrollWidth - 1);
-    };
+  
 
  
   const scroll = (direction) => {
@@ -43,7 +34,16 @@ const [display, setDisplay] = useState(false); //
     });
   };
  
-
+  const checkScroll = () => {
+      if (!scrollRef.current) return;
+      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+   
+      if(!(scrollLeft == 0)){
+        setHasScrolled(true)
+      }
+      setShowLeft(scrollLeft > 0);
+      setShowRight(Math.ceil(scrollLeft + clientWidth) < Math.ceil(scrollWidth));
+    };
 
 
 
@@ -69,9 +69,7 @@ const [display, setDisplay] = useState(false); //
     }}
     onMouseLeave={() => {
       if (!hasScrolled) setDisplay(false);
-    }}
-      
-      >
+    }}  >
  
       <div className="flex items-center justify-between mb-4">
 
@@ -120,9 +118,7 @@ const [display, setDisplay] = useState(false); //
    <div
         ref={scrollRef}
         className="w-full flex gap-5 overflow-hidden scrollbar-hide  scroll-smooth relative  
-         "
-        
-      >
+         ">
 
         {data.length > 0 && limitedData.map((d, i) => (
               <Link to={ d.season_number ? `/tv/${original}/season/${d.season_number}`

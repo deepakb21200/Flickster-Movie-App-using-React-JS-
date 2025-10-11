@@ -1,6 +1,7 @@
 
 import { Route, Routes } from 'react-router-dom'
 import Home2 from './Components/Home2.jsx'
+
 import Trending from './Components/Trending.jsx'
 import Popular from './Components/Popular.jsx'
 import Movie from './Components/Movie.jsx'
@@ -19,16 +20,17 @@ import Video from './Components/Video.jsx'
 import AboutUs from './Components/partials/AboutUs.jsx'
 import LeftSideBar from './Components/partials/LeftSideBar.jsx'
 import ContactUs from './Components/partials/ContactUs.jsx'
+import { useState } from 'react'
 
 
 export default function App() {
-  
+    const [wallpaper, setwallpaper] = useState(null)
   return (
       <div className={`w-full   flex`}>
    <LeftSideBar/>
         <Routes>
    
-          <Route  path='/' element={<Home2 />}/>
+          <Route  path='/' element={<Home2 wallpaper={wallpaper} setWallpaper={setwallpaper}/>}/>
             
             <Route path='/trending' element={<Trending />} />
 
@@ -39,8 +41,15 @@ export default function App() {
              <Route path='/movie/details/:id' element={<MovieDetails />} >
 
                <Route path='/movie/details/:id/trailer' element={<Video/>}/>
+                 
 
                </Route>
+
+{/* 
+               <Route path='/movie/details/:id' element={<MovieDetails />}>
+  <Route path='trailer' element={<Video />} />
+</Route> */}
+
 
              <Route path='/tv' element={<TvShows/>} />
 

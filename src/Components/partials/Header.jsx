@@ -2,12 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 export default function Header({ data }) {
-
- 
     return (
- 
-
-<div
+    <div
   style={{
     background: `linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.7), rgba(0,0,0,.9)),url(https://image.tmdb.org/t/p/original/${
       data.backdrop_path || data.profile_path

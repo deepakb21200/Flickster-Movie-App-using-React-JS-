@@ -44,33 +44,29 @@ function People() {
        Getpeople()
     },[])
  
-
-
  return people.length > 0 ?  (
-      <div className='w-full xl:px-[30px]'>
+      <div className=' xl:px-[30px]'>
      
-        <div className='w-full flex items-center  justify-between my-[5px]   flex-wrap  pl-[30px] xl:pl-[0px]'>
-          <h1 className='text-2xl font-semibold text-zinc-400  '>
-          <i onClick={()=>navigate(-1)} className="ri-arrow-left-line p-3 text-2xl hover:text-[#DD4343]  "></i>
-           People 
+        <div className='w-full   flex items-center   justify-center my-[5px]   flex-wrap  p-[10px]  '>
+          <h1 className='text-2xl font-semibold text-zinc-400   px-[30px]'>
+          <i onClick={()=>navigate(-1)} className="ri-arrow-left-line p-3 text-2xl hover:text-[#DD4343] 
+          cursor-pointer "></i>
+              People 
           </h1>
                <Navbar/>
+       
         </div>
 
-        <InfiniteScroll
+    <InfiniteScroll
           dataLength={people.length}
             next={Getpeople}
         hasMore={hasmore && !error}   // error aaya to aur data fetch mat karo
         loader={!error && <Search />}
-          className='w-full'
-            style={{overflow:"visible"}}
-            
-        >
+          className='w-full'>
           <Cards data={people} title="person" />
-        </InfiniteScroll>
+        </InfiniteScroll>  
 
-
-           {error && (
+          {error && (
   <p className="flex items-center justify-center gap-2 text-red-500 text-lg font-semibold ">
     <i className="ri-error-warning-line text-5xl "></i>
     Something went wrong, please try again!
@@ -78,6 +74,7 @@ function People() {
 )}
       </div>
     ) : <Loading />
+    
 }
 
 export default People

@@ -53,44 +53,37 @@ if(tvshows.length == 0){
   }, [category]);
 
 
+
  return tvshows.length > 0 ?  (
-      <div className='w-full xl:px-[30px]      '>
+      <div className=' xl:px-[30px]'>
      
-        <div className='w-full flex items-center  justify-between my-[5px]   flex-wrap  pl-[30px] xl:pl-[0px]'>
-          <h1 className='text-2xl font-semibold text-zinc-400  '>
-          <i onClick={()=>Navigate(-1)} className="ri-arrow-left-line p-3 text-2xl hover:text-[#DD4343]  "></i>
-            TV Shows <small className='ml-1 text-sm text-zinc-500'>({category}  )</small> 
+        <div className='w-full   flex items-center   justify-center my-[5px]   flex-wrap  p-[10px]  '>
+          <h1 className='text-2xl font-semibold text-zinc-400   px-[30px]'>
+          <i onClick={()=>Navigate(-1)} className="ri-arrow-left-line p-3 text-2xl hover:text-[#DD4343] 
+          cursor-pointer "></i>
+            TV Shows <small className='ml-1 text-lg text-zinc-500'>({category}  )</small>  
           </h1>
                <Navbar/>
-          <div className='flex justify-between   items-center'>
+          <div className='flex justify-between  items-center'>
             <div className='flex '>
             <Dropdown title="Category" options={["on_the_air", "top_rated", "airing_today", "popular"]} func={(e) => setcategory(e.target.value)} 
             value={category} />
             </div>
-          
+       
 
           </div>
         </div>
 
-        <InfiniteScroll
+          <InfiniteScroll
           dataLength={tvshows.length}
             next={GetTvShows}
              hasMore={hasMore && !error}   // error aaya to aur data fetch mat karo
-        //  loader={!error && <Search />}
-           loader={!error && (
-  <div className="h-16 flex items-center justify-center">
-    <p className="text-zinc-400 text-lg">Loading movies...</p>
-  </div>
-)}
-          className='w-full'
-            style={{overflow:"visible"}}
-            
-        >
+         loader={!error && <Search />}
+          className='w-full' >
           <Cards data={tvshows} title="tv" />
         </InfiniteScroll>
 
-
-            {error && (
+          {error && (
   <p className="flex items-center justify-center gap-2 text-red-500 text-lg font-semibold ">
     <i className="ri-error-warning-line text-5xl "></i>
     Something went wrong, please try again!
@@ -98,9 +91,6 @@ if(tvshows.length == 0){
 )}
       </div>
     ) : <Loading />
-
-
-
 
 
 }

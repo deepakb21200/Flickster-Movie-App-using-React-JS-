@@ -58,21 +58,20 @@ if(underrated.length == 0){
   useEffect(() => {
     refreshHandler();
   }, [category, language]);
- 
 
  return underrated.length > 0 ?  (
       <div className=' xl:px-[30px]'>
      
-        <div className='w-full flex items-center  justify-between my-[5px]   flex-wrap  pl-[30px] xl:pl-[0px]'>
-          <h1 className='text-2xl font-semibold text-zinc-400  '>
+        <div className='w-full   flex items-center   justify-center my-[5px]   flex-wrap  p-[10px]  '>
+          <h1 className='text-2xl font-semibold text-zinc-400   px-[30px]'>
           <i onClick={()=>Navigate(-1)} className="ri-arrow-left-line p-3 text-2xl hover:text-[#DD4343] 
           cursor-pointer "></i>
-            Underrated Movies <small className='ml-1 text-sm text-zinc-500'>({category} {language})</small> 
+              Underrated Movies <small className='ml-1 text-lg text-zinc-500'>({category} , {language})</small> 
           </h1>
                <Navbar/>
           <div className='flex justify-between  items-center'>
             <div className='flex '>
-               <Dropdown title="category" options={["movie", "tv"]} func={(e) => setCategory(e.target.value)}   value={category}  />
+                 <Dropdown title="category" options={["movie", "tv"]} func={(e) => setCategory(e.target.value)}   value={category}  />
 
             <Dropdown title="language" options={["hi", "en"]} func={(e) => setLanguage(e.target.value)} value={language} />
             </div>
@@ -85,19 +84,10 @@ if(underrated.length == 0){
           dataLength={underrated.length}
          next={fetchUnderrated}
           hasMore={hasMore && !error}   // error aaya to aur data fetch mat karo
+        loader={!error && <Search />}>
 
-          
-        //  loader={!error && <Search />}
-          loader={!error && (
-  <div className="h-16 flex items-center justify-center">
-    <p className="text-zinc-400 text-lg">Loading movies...</p>
-  </div>
-)}
-         
-         >
-
-       <Cards data={underrated} title="movie" />
-      </InfiniteScroll>
+      <Cards data={underrated} title="movie" />
+    </InfiniteScroll>
 
           {error && (
   <p className="flex items-center justify-center gap-2 text-red-500 text-lg font-semibold ">
@@ -107,6 +97,6 @@ if(underrated.length == 0){
 )}
       </div>
     ) : <Loading />
-
+    
 }
 
